@@ -542,8 +542,10 @@ function retry_terraform {
     ls -la
     # TODO: If plan does not create new resource then exit
     plan_info
+    echo "test 10"
   fi
   echo "test 5"
+  echo "test 11"
 
   for (( ATTEMPT=1; ATTEMPT <= NO_OF_RETRY; ATTEMPT++ )); do
     LOG_FILE="../logs/${LOGFILE}_${action}_$ATTEMPT.log"
@@ -556,12 +558,17 @@ function retry_terraform {
     } >> "$LOG_FILE"
     echo "test 6"
     if [[ "$TF_TRACE" -eq 0 ]]; then
+      echo "test 14"
       $cmd >> "$LOG_FILE" 2>&1 &
+         echo "test 12"
     else
+      echo "test 15"
       $cmd 2>&1 | tee "$LOG_FILE" &
+      echo "test 13"
     fi
-
+    echo "test "16""
     monitor_loop
+    echo "test 17"
 
     # Check if errors exist
     if grep -c "Error:" "$LOG_FILE" >/dev/null; then
@@ -606,8 +613,11 @@ function retry_terraform {
         ATTEMPT=0
         continue
       fi
+      echo "test 17 break"
       break
+      echo "test 18"
     fi
+    echo "test 19"
   done
   log "Completed running the terraform command."
 }
