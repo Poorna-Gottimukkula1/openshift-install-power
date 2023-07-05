@@ -450,6 +450,7 @@ function monitor_loop {
 # Read the info from the plan file
 #-------------------------------------------------------------------------
 function plan_info {
+  echo "test 20 plan before"
   BASTION_COUNT=$(grep ibm_pi_instance.bastion tfplan | grep -c -v "has changed")
   BOOTSTRAP_COUNT=$(grep ibm_pi_instance.bootstrap tfplan | grep -c -v "has changed")
   MASTER_COUNT=$(grep ibm_pi_instance.master tfplan | grep -c -v "has changed")
@@ -541,6 +542,7 @@ function retry_terraform {
     cat ./tfplan
     ls -la
     # TODO: If plan does not create new resource then exit
+    echo "test final"
     plan_info
     echo "test 10"
   fi
