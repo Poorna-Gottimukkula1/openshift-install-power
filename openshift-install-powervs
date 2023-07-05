@@ -467,7 +467,9 @@ function is_terraform_running {
 
   if [[ -n $(find "${LOG_FILE}" -mmin -1 -print) ]]; then
     warn "Last run was less than a min ago... please wait a minute"
+    echo "test 7"
     sleep 60
+    echo "test 8"
   fi
   if [[ -n $(find "${LOG_FILE}" -mmin -1 -print) ]]; then
     warn "Existing Terraform process is already running... please wait"
@@ -476,8 +478,10 @@ function is_terraform_running {
     log "Starting a new terraform process... please wait"
   else
     # No log files updated in last 1 min; Invalid TF lock file
+    echo "test 9"
     if [[ -f ./.terraform.tfstate.lock.info ]]; then
       rm -f ./.terraform.tfstate.lock.info
+      echo "test 10"
     fi
   fi
 }
@@ -518,14 +522,16 @@ function retry_terraform {
 
   # bootstrap node already deleted; subsequent cmds should have bootstrap count as 0
   [[ -f "$BOOTSTRAP_DELETE_VARFILE" ]] && cmd="$cmd -var-file $BOOTSTRAP_DELETE_VARFILE"
-
+  echo "test 1"
   while [[ -f ./tfplan ]] && [[ $(find ./tfplan -mmin -1 -print) ]]; do
     # Concurrent plan requests will fail; last plan was in less than a min
+    echo "test 2"
     sleep $SLEEP_TIME
+    
   done
-
-  #is_terraform_running
-
+  echo "test 3"
+  is_terraform_running
+  echo "test 4"
   if [[ $action == "apply" ]]; then
     # Running terraform plan
     # shellcheck disable=SC2086
@@ -537,6 +543,7 @@ function retry_terraform {
     # TODO: If plan does not create new resource then exit
     plan_info
   fi
+  echo "test 5"
 
   for (( ATTEMPT=1; ATTEMPT <= NO_OF_RETRY; ATTEMPT++ )); do
     LOG_FILE="../logs/${LOGFILE}_${action}_$ATTEMPT.log"
@@ -547,7 +554,7 @@ function retry_terraform {
     echo "$cmd"
     echo "========================"
     } >> "$LOG_FILE"
-
+    echo "test 6"
     if [[ "$TF_TRACE" -eq 0 ]]; then
       $cmd >> "$LOG_FILE" 2>&1 &
     else
