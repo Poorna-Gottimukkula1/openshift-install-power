@@ -677,7 +677,7 @@ function precheck_input {
     error "Please export IBMCLOUD_API_KEY"
   else
     export TF_VAR_ibmcloud_api_key="$IBMCLOUD_API_KEY"
-    error "Printing test variable ${TF_VAR_ibmcloud_api_key}"
+    warn "Printing test variable ${TF_VAR_ibmcloud_api_key}"
   fi
   debug_switch
 
