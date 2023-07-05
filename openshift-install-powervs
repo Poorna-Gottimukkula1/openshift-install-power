@@ -452,10 +452,15 @@ function monitor_loop {
 function plan_info {
   echo "test 20 plan before"
   BASTION_COUNT=$(grep ibm_pi_instance.bastion tfplan | grep -c -v "has changed")
+  echo "test 20 plan before ${BASTION_COUNT}"
   BOOTSTRAP_COUNT=$(grep ibm_pi_instance.bootstrap tfplan | grep -c -v "has changed")
+  echo "test 20 plan before"
   MASTER_COUNT=$(grep ibm_pi_instance.master tfplan | grep -c -v "has changed")
+  echo "test 20 plan before"
   WORKER_COUNT=$(grep ibm_pi_instance.worker tfplan | grep -c -v "has changed")
+  echo "test 20 plan before"
   TOTAL_RHCOS=$(( BOOTSTRAP_COUNT + MASTER_COUNT + WORKER_COUNT ))
+  echo "test 20 plan before"
   echo "test 21 plab after"
 }
 
