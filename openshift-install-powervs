@@ -529,7 +529,11 @@ function retry_terraform {
   if [[ $action == "apply" ]]; then
     # Running terraform plan
     # shellcheck disable=SC2086
+    echo "creating testing TFPLAN"
+    ls -la
     $TF plan $vars -input=false > ./tfplan
+    cat ./tfplan
+    ls -la
     # TODO: If plan does not create new resource then exit
     plan_info
   fi
