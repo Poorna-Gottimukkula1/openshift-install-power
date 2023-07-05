@@ -524,7 +524,7 @@ function retry_terraform {
     sleep $SLEEP_TIME
   done
 
-  is_terraform_running
+  #is_terraform_running
 
   if [[ $action == "apply" ]]; then
     # Running terraform plan
