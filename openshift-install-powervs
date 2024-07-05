@@ -1301,7 +1301,7 @@ function setup_occli() {
   OC_BASE_URL="https://mirror.openshift.com/pub/openshift-v4/${ARCH}/clients/ocp/stable-${RELEASE_VER}"
   OC_DOWNLOAD_URL="${OC_BASE_URL}/openshift-client-${OC_CLI_OS}.${ARCHIVE_TYPE}"
 
-  OC_DEV_BASE_URL="https://mirror.openshift.com/pub/openshift-v4/${ARCH}/clients/ocp-dev-preview/latest-${RELEASE_VER}"
+  OC_DEV_BASE_URL="https://mirror.openshift.com/pub/openshift-v4/${ARCH}/clients/ocp-dev-preview/candidate-${RELEASE_VER}"
   OC_DEV_DOWNLOAD_URL="${OC_DEV_BASE_URL}/openshift-client-${OC_CLI_OS}.${ARCHIVE_TYPE}"
 
   EXT_PATH=$(which oc 2> /dev/null || true)
