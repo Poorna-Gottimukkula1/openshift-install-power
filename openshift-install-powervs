@@ -1216,8 +1216,8 @@ function setup_terraform {
   if [[ "${ARCH}" == "ppc64le" ]]; then
     TF_LATEST=v1.12.2
   else
-    TF_LATEST=v1.12.2
-    #TF_LATEST=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep tag_name | cut -d '"' -f4)
+    #TF_LATEST=v1.12.2
+    TF_LATEST=$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep tag_name | cut -d '"' -f4)
   fi
 
   if [[ -f $TF && $($TF version | grep 'Terraform v') == "Terraform ${TF_LATEST}" ]]; then
@@ -1615,7 +1615,7 @@ function display_version {
 }
 
 function main {
-  export TF_LOG=DEBUG
+  #export TF_LOG=DEBUG
   mkdir -p ./logs
   vars=""
 
